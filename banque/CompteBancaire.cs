@@ -8,4 +8,5 @@
         public List<Transaction> listeTransaction { get; set; }
         public bool autorisationDecouvert { get; set; }
     }
+
 }
