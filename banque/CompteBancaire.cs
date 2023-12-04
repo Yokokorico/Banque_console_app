@@ -1,6 +1,4 @@
-﻿ 
-
-namespace banque 
+﻿namespace banque 
 {
     public class CompteBancaire
     {
