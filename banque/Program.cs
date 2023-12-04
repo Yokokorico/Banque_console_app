@@ -1,7 +1,12 @@
 using banque;
+using affichage;
 public class Program{
 
-    public void Main(string[] args){
+    public static void Main(string[] args){
+
+        bool inputValid = true;
+        while (inputValid)
+        {
 
         var client = new Client(); 
         var compte =  new CompteBancaire();
@@ -12,16 +17,20 @@ public class Program{
         var inputClient = Console.ReadLine();
 
         switch (inputClient)
-        {
-            case "1": 
-            
-            break;
-            case "2":
-            Console.WriteLine("A bientôt !");
-            break;
-            default: 
-            Console.WriteLine("Veuillez entrer 1 ou 2");
-            break;
+            {
+                case "1":
+                    AffichageCompte.Menu();
+                    inputValid = false;
+                    break;
+                case "2": 
+                    Console.WriteLine("Au revoir !");
+                    inputValid = false;
+                    break;
+                default:
+                    Console.WriteLine("Veuillez entrer 1 ou 2.");
+                    break;
+
+            }
         }
     }
 }
