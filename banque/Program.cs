@@ -19,7 +19,7 @@ public class Program{
         switch (inputClient)
             {
                 case "1":
-                    AffichageCompte.Menu();
+                    AffichageCompte.Menu(client);
                     inputValid = false;
                     break;
                 case "2": 
