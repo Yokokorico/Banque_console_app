@@ -1,9 +1,14 @@
-﻿namespace banque 
+﻿using Affichage;
+
+namespace banque 
 {
     public class CompteBancaire
     {
         public Client client { get; set; }
-        public int solde { get; set; } = 0;
+        public double solde { 
+            get{ return AffichageSolde.CalculSolde(numeroCompte,client);}
+            set {solde=value;} 
+        }
         public int numeroCompte { get; set;}
         public List<Transaction> listeTransaction { get; set; } = new List<Transaction>();
         public bool autorisationDecouvert { get; set; }
