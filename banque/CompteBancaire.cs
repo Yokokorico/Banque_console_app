@@ -25,7 +25,24 @@ namespace banque
 
         public void EffectuerRetrait(double montant, string intituleTrans)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (montant > solde && autorisationDecouvert == false)
+                {
+                    throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
+                }
+                Console.WriteLine($"Votre solde avant opération -> {solde}");
+                montant = 0-montant;
+                listeTransaction.Add(new Transaction(intituleTrans, montant));
+                Console.WriteLine($"Votre solde après opération -> {solde}");
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                string messageInvalidOperation = $"Erreur : {ex.Message}";
+                Console.WriteLine(messageInvalidOperation);
+                throw  new InvalidOperationException(messageInvalidOperation, ex);
+            }
         }
 
         public void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
