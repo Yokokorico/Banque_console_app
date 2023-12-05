@@ -16,7 +16,13 @@ namespace affichage {
 
             switch (inputClient) {
                 case "1": 
-                client.comptes.ForEach(compte => Console.WriteLine(compte.numeroCompte));
+                int index = 1;
+                int[] numeroComptes = new int[client.comptes.Count];
+                client.comptes.ForEach(compte => {
+                    Console.WriteLine($"{index++}. {compte.numeroCompte}");
+                    numeroComptes[index-1] = compte.numeroCompte;
+                });
+                ChoixCompte(client);   
                 inputValid = false;
                 break;
                 default:
@@ -27,6 +33,17 @@ namespace affichage {
         }
 
         }
+        public static void ChoixCompte(Client client){
+
+            Console.WriteLine("Quel compte souhaitez-vous voir ?");
+            Int32.TryParse(Console.ReadLine(), out int inputClient);
+
+        if (inputClient > 0 && inputClient < client.comptes.Count+1){
+        // Arrêt histoire du -1 pour avoir le bon index dans le tableau
+        }
+            
+            
+        }
+}
 
     }
-}
