@@ -4,5 +4,16 @@ namespace banque {
         public int montant{get; set;}
         public DateTime date {get; set;}
 
+        public Transaction(string intituleTrans,int montantTrans){
+            if(intitule != ""){
+                intitule=intituleTrans;
+            }else{
+                intitule="Transaction";
+            }
+            montant = montantTrans;
+            date = DateTime.Now;
+        }
     }
+
+    
 }
