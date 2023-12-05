@@ -7,7 +7,7 @@ namespace Affichage{
 
         public static double CalculSolde(int compteChoisi, Client client){
             if(client.comptes.Single(s => s.numeroCompte == compteChoisi).listeTransaction.Count == 0){
-                return client.comptes.Single(s => s.numeroCompte == compteChoisi).solde;
+                return 0;
             }else{
                 return client.comptes.Single(s => s.numeroCompte == compteChoisi).listeTransaction.Sum(objet => objet.montant);
             }

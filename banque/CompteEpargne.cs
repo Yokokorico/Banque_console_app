@@ -1,6 +1,6 @@
 using banque;
 
-class CompteEpargne : CompteBancaire, ITransactionnel
+class CompteEpargne : CompteBancaire
 {
     public CompteEpargne(Client client, bool autoDecouvert) : base(client, autoDecouvert)
     {

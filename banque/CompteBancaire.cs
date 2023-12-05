@@ -1,23 +1,58 @@
 ﻿using Affichage;
 
-namespace banque 
+namespace banque
 {
-    public class CompteBancaire
+    public class CompteBancaire : ITransactionnel
     {
+        const double DEPOTMINIMAL = 0.1;
         public Client client { get; set; }
-        public double solde { 
-            get{ return AffichageSolde.CalculSolde(numeroCompte,client);}
-            set {solde=value;} 
+        public double solde
+        {
+            get { return AffichageSolde.CalculSolde(numeroCompte, this.client); }
+            set { solde = value; }
         }
-        public int numeroCompte { get; set;}
+        public int numeroCompte { get; set; }
         public List<Transaction> listeTransaction { get; set; } = new List<Transaction>();
         public bool autorisationDecouvert { get; set; }
 
-        public CompteBancaire(Client client, bool autoDecouvert){
+        public CompteBancaire(Client clientDuCompte, bool autoDecouvert)
+        {
             Random random = new Random();
-            client= this.client;
-            numeroCompte = random.Next(100000,999999);
-            autorisationDecouvert=autoDecouvert;
+            client = clientDuCompte;
+            numeroCompte = random.Next(100000, 999999);
+            autorisationDecouvert = autoDecouvert;
+        }
+
+        public void EffectuerRetrait(double montant, string intituleTrans)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EffectuerDepot(double montant, string intituleTrans)
+        {
+            try
+            {
+                if (montant < DEPOTMINIMAL)
+                {
+                    throw new InvalidOperationException("Le montant minimal est de 0.1€");
+                }
+
+                Console.WriteLine($"Votre solde avant opération -> {solde}");
+                listeTransaction.Add(new Transaction(intituleTrans, montant));
+                Console.WriteLine($"Votre solde après opération -> {solde}");
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                string messageInvalidOperation = $"Erreur : {ex.Message}";
+                Console.WriteLine(messageInvalidOperation);
+                throw  new InvalidOperationException(messageInvalidOperation, ex);
+            }
         }
     }
 }
