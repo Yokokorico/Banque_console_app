@@ -1,7 +1,7 @@
 
 using banque;
 
-namespace affichage {
+namespace Affichage {
     public class AffichageCompte {
 
         public static void Menu(Client client) {
