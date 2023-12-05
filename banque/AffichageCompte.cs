@@ -19,10 +19,10 @@ namespace affichage {
                 int index = 1;
                 int[] numeroComptes = new int[client.comptes.Count];
                 client.comptes.ForEach(compte => {
-                    Console.WriteLine($"{index++}. {compte.numeroCompte}");
                     numeroComptes[index-1] = compte.numeroCompte;
+                    Console.WriteLine($"{index++}. {compte.numeroCompte}");
                 });
-                ChoixCompte(client);   
+                ChoixCompte(client, numeroComptes);   
                 inputValid = false;
                 break;
                 default:
@@ -33,17 +33,25 @@ namespace affichage {
         }
 
         }
-        public static void ChoixCompte(Client client){
+        public static void ChoixCompte(Client client, int[] numeroComptes){
 
             Console.WriteLine("Quel compte souhaitez-vous voir ?");
+            var inputValid = true;
+
+           while (inputValid){
+           
             Int32.TryParse(Console.ReadLine(), out int inputClient);
 
-        if (inputClient > 0 && inputClient < client.comptes.Count+1){
-        // Arrêt histoire du -1 pour avoir le bon index dans le tableau
-        }
-            
+            if (inputClient > 0 && inputClient < client.comptes.Count+1){
+                Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient]}");
+                Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Quitter");
+            }
+            else {
+                Console.WriteLine("Veuillez entrer un compte valide");
+            }
+           }  
             
         }
 }
 
-    }
+}
