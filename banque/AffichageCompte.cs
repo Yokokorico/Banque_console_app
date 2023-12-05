@@ -21,13 +21,16 @@ namespace Affichage {
             while (inputValid) {
 
             Console.WriteLine("Vous êtes sur votre espace personnel.");
-            Console.WriteLine("Que souhaitez-vous faire ? \n1. Voir mes comptes \n2. Quitter");
+            Console.WriteLine("Que souhaitez-vous faire ? \n1. Voir mes comptes \n2. Tout voir \n3. Quitter");
             var inputClient = Console.ReadLine();
 
             switch (inputClient) {
                 case "1": 
                 ChoixCompte(client);   
                 inputValid = false;
+                break;
+                case "2":
+                VisionGlobale(client);
                 break;
                 default:
                 Console.WriteLine("Pas de comptes en cours !");
@@ -38,14 +41,14 @@ namespace Affichage {
 
         }
         public static void ChoixCompte(Client client){
-                int index = 1;
-                int[] numeroComptes = new int[client.comptes.Count];
-                client.comptes.ForEach(compte => {
-                    numeroComptes[index-1] = compte.numeroCompte;
-                    Console.WriteLine($"{index++}. {compte.numeroCompte}");
-                });
 
             Console.WriteLine("Quel compte souhaitez-vous voir ?");
+            int index = 1;
+            int[] numeroComptes = new int[client.comptes.Count];
+            client.comptes.ForEach(compte => {
+                numeroComptes[index-1] = compte.numeroCompte;
+                Console.WriteLine($"{index++}. {compte.numeroCompte}");
+            });
             bool inputValid = true;
 
            while (inputValid){
@@ -70,6 +73,7 @@ namespace Affichage {
                 } else if (inputCompte == (int)compteChoix.ChangerCompte){
                     ChoixCompte(client);
                 } else if (inputCompte == (int)compteChoix.Quitter){
+                    Console.WriteLine("Je suis ici !");
                     inputValid = false;
                 }
                 
@@ -80,6 +84,9 @@ namespace Affichage {
             
         }
 
+    public static void VisionGlobale(Client client) {
+
+    }
        
     }
 }
