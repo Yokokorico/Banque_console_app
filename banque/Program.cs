@@ -9,8 +9,8 @@ public class Program{
         {
 
         var client = new Client(); 
-        var compte =  new CompteBancaire(client,false);
-        client.comptes.Add(compte);
+               
+        Console.WriteLine($"Votre solde est de {client.comptes.Single(s => s.numeroCompte == client.comptes[1].numeroCompte).solde}");
         Console.WriteLine($"Bienvenue {client.nom} {client.prenom} !");
         Console.WriteLine("Voulez-vous accéder à votre espace personnel ?\n1. Oui \n2. Non");
         var inputClient = Console.ReadLine();
