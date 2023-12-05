@@ -19,5 +19,6 @@ namespace banque
             numeroCompte = random.Next(100000,999999);
             autorisationDecouvert=autoDecouvert;
         }
+
     }
 }
