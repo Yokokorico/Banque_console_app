@@ -5,7 +5,7 @@
         public Client client { get; set; }
         public int solde { get; set; } = 0;
         public int numeroCompte { get; set;}
-        public List<Transaction> listeTransaction { get; set; }
+        public List<Transaction> listeTransaction { get; set; } = new List<Transaction>();
         public bool autorisationDecouvert { get; set; }
 
         public CompteBancaire(Client client, bool autoDecouvert){
