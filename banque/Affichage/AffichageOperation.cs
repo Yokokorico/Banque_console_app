@@ -22,13 +22,14 @@ public class AffichageOperation
                     Console.WriteLine("Merci de rentrer un moment valide");
                     continue;
                 }
+               
                 Console.WriteLine("Entrez un intitulé (Optionnel)");
                 var inituleEntrerParUtilisateur = Console.ReadLine();
                 client.comptes.Single(s => s.numeroCompte == numeroCompte)
                 .EffectuerDepot(montantEntrerParUtilisateur,
                                 inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
-                
+            
             }
         }
         catch (InvalidOperationException ex)
@@ -63,25 +64,28 @@ public class AffichageOperation
                     if (!Int32.TryParse(Console.ReadLine(), out int numeroComptePourEnvoiVirement))
                     {
                         Console.WriteLine("Merci de rentrer un numéro de compte valide");
+                        continue;
                     }
-                    else
-                    {
-                        inputNumeroDeCompteValide = false;
-                        Console.WriteLine("Entrez un intitulé (Optionnel)");
-                        var inituleEntrerParUtilisateur = Console.ReadLine();
-                        client.comptes.Single(s => s.numeroCompte == numeroCompte)
-                            .EffectuerVirement(montantEntrerParUtilisateur,
-                                                inituleEntrerParUtilisateur,
-                                                numeroComptePourEnvoiVirement);
-                        inputUtilisateurValide = false;
-                    }
+                    
+                    inputNumeroDeCompteValide = false;
+                    Console.WriteLine("Entrez un intitulé (Optionnel)");
+                    var inituleEntrerParUtilisateur = Console.ReadLine();
+                    client.comptes.Single(s => s.numeroCompte == numeroCompte)
+                        .EffectuerVirement(montantEntrerParUtilisateur,
+                                            inituleEntrerParUtilisateur,
+                                            numeroComptePourEnvoiVirement);
+                    inputUtilisateurValide = false;
+                    
                 }
+
+
             }
         }
         catch (InvalidOperationException ex)
         {
             AffichageCompte.Menu(client);
         }
+
     }
     /// <summary>
     /// Méthode d'affichage question réponse pour le Retrait
@@ -101,17 +105,20 @@ public class AffichageOperation
                     Console.WriteLine("Merci de rentrer un moment valide");
                     continue;
                 }
+
                 Console.WriteLine("Entrez un intitulé (Optionnel)");
                 var inituleEntrerParUtilisateur = Console.ReadLine();
                 client.comptes.Single(s => s.numeroCompte == numeroCompte)
                 .EffectuerRetrait(montantEntrerParUtilisateur, 
                                     inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
+
             }
         }
         catch (InvalidOperationException ex)
         {
             AffichageCompte.Menu(client);
         }
+
     }
 }
