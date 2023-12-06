@@ -30,8 +30,16 @@ class CompteCourant : CompteBancaire
 
     public override void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
     {
-            EffectuerRetrait(montant,intituleTrans);
+        try{
             client.comptes.Single(s=>s.numeroCompte==numeroComptePourTransfere).EffectuerDepot(montant,intituleTrans);
+            EffectuerRetrait(montant,intituleTrans);
+        }
+        catch (InvalidOperationException ex)
+        {
+            string messageInvalidOperation = $"Erreur : {ex.Message}";
+            Console.WriteLine(messageInvalidOperation);
+            throw new InvalidOperationException(messageInvalidOperation, ex);
+        }
     }
 
     public override void EffectuerDepot(double montant, string intituleTrans)
