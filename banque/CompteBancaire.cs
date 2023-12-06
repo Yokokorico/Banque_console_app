@@ -4,7 +4,6 @@ namespace banque
 {
     public abstract class CompteBancaire : ITransactionnel
     {
-        const double DEPOTMINIMAL = 0.1;
         public Client client { get; set; }
         public double solde
         {
@@ -22,12 +21,24 @@ namespace banque
             numeroCompte = random.Next(100000, 999999);
             autorisationDecouvert = autoDecouvert;
         }
-
+        /// <summary>
+        /// Méthode permettant d'effectuer un retrait de son compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
         public abstract void EffectuerRetrait(double montant, string intituleTrans);        
-
+        /// <summary>
+        /// Méthode permettant d'effectuer un virement vers un autre compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
+        /// <param name="numeroComptePourTransfere"></param>
         public abstract void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere);
-       
-
+        /// <summary>
+        /// Méthode permettant d'effectuer un depôt sur son compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
         public abstract void EffectuerDepot(double montant, string intituleTrans);
         
     }
