@@ -1,5 +1,15 @@
 
 using banque;
+            
+public enum compteChoix
+{
+    Retirer = 1,
+    Virement = 2,
+    Depot = 3,
+    ChangerCompte = 4, 
+    Quitter = 5
+}
+
 
 namespace Affichage {
     public class AffichageCompte {
@@ -10,19 +20,17 @@ namespace Affichage {
 
             while (inputValid) {
 
-            Console.WriteLine("Vous êtes sur votre espace personnel.");
-            Console.WriteLine("Que souhaitez-vous faire ? \n1. Voir mes comptes \n2. Quitter");
+            Console.WriteLine($"Vous êtes sur votre espace personnel {client.prenom}.");
+            Console.WriteLine("Que souhaitez-vous faire ? \n1. Choisir mon compte \n2. Voir mes comptes \n3. Quitter");
             var inputClient = Console.ReadLine();
 
             switch (inputClient) {
                 case "1": 
-                int index = 1;
-                int[] numeroComptes = new int[client.comptes.Count];
-                client.comptes.ForEach(compte => {
-                    numeroComptes[index-1] = compte.numeroCompte;
-                    Console.WriteLine($"{index++}. {compte.numeroCompte}");
-                });
-                ChoixCompte(client, numeroComptes);   
+                ChoixCompte(client);   
+                inputValid = false;
+                break;
+                case "2":
+                VisionGlobale(client);
                 inputValid = false;
                 break;
                 default:
@@ -33,25 +41,81 @@ namespace Affichage {
         }
 
         }
-        public static void ChoixCompte(Client client, int[] numeroComptes){
+        public static void ChoixCompte(Client client){
 
             Console.WriteLine("Quel compte souhaitez-vous voir ?");
-            var inputValid = true;
+            int index = 1;
+            int[] numeroComptes = new int[client.comptes.Count];
+            client.comptes.ForEach(compte => {
+                numeroComptes[index-1] = compte.numeroCompte;
+                Console.WriteLine($"{index++}. {compte.numeroCompte}");
+            });
+            bool inputValid = true;
 
            while (inputValid){
            
             Int32.TryParse(Console.ReadLine(), out int inputClient);
 
-            if (inputClient > 0 && inputClient < client.comptes.Count+1){
-                Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient]}");
-                Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Quitter");
-            }
-            else {
-                Console.WriteLine("Veuillez entrer un compte valide");
-            }
-           }  
+                if (inputClient < 0 || inputClient >= client.comptes.Count + 1)
+                {
+                    Console.WriteLine("Veuillez entrer un compte valide");
+                }
+                else
+                {
+                    Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
+                    Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Quitter");
+
+                    Int32.TryParse(Console.ReadLine(), out int inputCompte);
+
+                    if (inputCompte == (int)compteChoix.Retirer)
+                    {
+                        AffichageSolde.AffichageDuSolde(numeroComptes[inputClient - 1], client);
+                        // AffichageRetrait.AffichageRetrait(numeroComptes[inputClient-1], client);
+                    }
+                    else if (inputCompte == (int)compteChoix.Depot)
+                    {
+                        AffichageSolde.AffichageDuSolde(numeroComptes[inputClient - 1], client);
+                        // AffichageDepot.AffichageDepot(numeroComptes[inputClient-1], client);
+                    }
+                    else if (inputCompte == (int)compteChoix.Virement)
+                    {
+                        AffichageSolde.AffichageDuSolde(numeroComptes[inputClient - 1], client);
+                        // AffichageVirement.AffichageVirement(numeroComptes[inputClient-1], client);
+                    }
+                    else if (inputCompte == (int)compteChoix.ChangerCompte)
+                    {
+                        ChoixCompte(client);
+                    }
+                    else if (inputCompte == (int)compteChoix.Quitter)
+                    {
+                        inputValid = false;
+                    }
+
+                }
+            }  
             
         }
-}
 
+    public static void VisionGlobale(Client client) {
+
+        var index = 1;
+        Console.WriteLine($"Voici tous vos comptes {client.prenom}");
+
+        if (client.comptes.Count == 0)
+        {
+
+            Console.WriteLine("Vous n'avez pas de compte.");
+
+        } else {client.comptes.ForEach(compte => {
+                Console.WriteLine($"{index++}. {compte.numeroCompte}");
+                // AffichageRetrait.AffichageRetrait(compte, client);
+                // AffichageVirement.AffichageVirement(compte, client);
+                // AffichageDepot.AffichageDepot(compte, client);
+                // AffichageSolde.AffichageDuSolde(compte.numeroCompte, client);
+            });
+        }
+    }
+
+       
+    }
 }
