@@ -34,8 +34,9 @@ class CompteCourant : CompteBancaire
         {
             if (montant > solde && autorisationDecouvert == false)
             {
-                throw new InvalidOperationException("Vous ne pouvez pas virer vers un autre compte car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
+                throw new InvalidOperationException("Une erreur s'est produite lors du virement cela peut être du à plusieurs choses:\n1.Votre compte n'a pas un solde suffisant et vous n'avez pas l'autorisation de découvert activé\n2.Le numéro de compte à créditer n'est pas valide");
             }
+
             Console.WriteLine($"Votre solde avant opération -> {solde}");
             double montantARetirer = 0-montant;
             listeTransaction.Add(new Transaction(intituleTrans, montantARetirer));
