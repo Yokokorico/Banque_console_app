@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace banque {
+namespace Banque {
     public class Client{
 
         public string nom{ get; set;}

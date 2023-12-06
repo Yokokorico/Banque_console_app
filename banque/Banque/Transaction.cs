@@ -1,4 +1,4 @@
-namespace banque {
+namespace Banque {
     public class Transaction{
         public string intitule{get; set;}
         public double montant{get; set;}

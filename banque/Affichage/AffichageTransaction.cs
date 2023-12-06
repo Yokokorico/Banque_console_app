@@ -1,4 +1,4 @@
-using banque;
+using Banque;
 
 namespace Affichage;
 

@@ -1,4 +1,4 @@
-using banque;
+using Banque;
 using Affichage;
 public class Program{
 
@@ -9,8 +9,8 @@ public class Program{
         {
 
         var client = new Client(); 
-        // var compte =  new CompteBancaire(client,false);
-        // client.comptes.Add(compte);
+        var compte =  new CompteCourant(client,false);
+        client.comptes.Add(compte);
         
         Console.WriteLine($"Bienvenue {client.nom} {client.prenom} !");
         Console.WriteLine("Voulez-vous accéder à votre espace personnel ?\n1. Oui \n2. Non");
