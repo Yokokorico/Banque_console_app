@@ -2,9 +2,8 @@
 
 namespace banque
 {
-    public class CompteBancaire : ITransactionnel
+    public abstract class CompteBancaire : ITransactionnel
     {
-        const double DEPOTMINIMAL = 0.1;
         public Client client { get; set; }
         public double solde
         {
@@ -22,54 +21,25 @@ namespace banque
             numeroCompte = random.Next(100000, 999999);
             autorisationDecouvert = autoDecouvert;
         }
-
-        public void EffectuerRetrait(double montant, string intituleTrans)
-        {
-            try
-            {
-                if (montant > solde && autorisationDecouvert == false)
-                {
-                    throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
-                }
-                Console.WriteLine($"Votre solde avant opération -> {solde}");
-                montant = 0-montant;
-                listeTransaction.Add(new Transaction(intituleTrans, montant));
-                Console.WriteLine($"Votre solde après opération -> {solde}");
-
-            }
-            catch (InvalidOperationException ex)
-            {
-                string messageInvalidOperation = $"Erreur : {ex.Message}";
-                Console.WriteLine(messageInvalidOperation);
-                throw  new InvalidOperationException(messageInvalidOperation, ex);
-            }
-        }
-
-        public void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EffectuerDepot(double montant, string intituleTrans)
-        {
-            try
-            {
-                if (montant < DEPOTMINIMAL)
-                {
-                    throw new InvalidOperationException("Le montant minimal est de 0.1€");
-                }
-
-                Console.WriteLine($"Votre solde avant opération -> {solde}");
-                listeTransaction.Add(new Transaction(intituleTrans, montant));
-                Console.WriteLine($"Votre solde après opération -> {solde}");
-
-            }
-            catch (InvalidOperationException ex)
-            {
-                string messageInvalidOperation = $"Erreur : {ex.Message}";
-                Console.WriteLine(messageInvalidOperation);
-                throw  new InvalidOperationException(messageInvalidOperation, ex);
-            }
-        }
+        /// <summary>
+        /// Méthode permettant d'effectuer un retrait de son compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
+        public abstract void EffectuerRetrait(double montant, string intituleTrans);        
+        /// <summary>
+        /// Méthode permettant d'effectuer un virement vers un autre compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
+        /// <param name="numeroComptePourTransfere"></param>
+        public abstract void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere);
+        /// <summary>
+        /// Méthode permettant d'effectuer un depôt sur son compte
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <param name="intituleTrans"></param>
+        public abstract void EffectuerDepot(double montant, string intituleTrans);
+        
     }
 }
