@@ -111,7 +111,7 @@ namespace Affichage {
                 // AffichageRetrait.AffichageRetrait(compte, client);
                 // AffichageVirement.AffichageVirement(compte, client);
                 // AffichageDepot.AffichageDepot(compte, client);
-                AffichageSolde.AffichageDuSolde(compte.numeroCompte, client);
+                // AffichageSolde.AffichageDuSolde(compte.numeroCompte, client);
             });
         }
     }
