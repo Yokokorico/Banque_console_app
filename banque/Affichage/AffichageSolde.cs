@@ -1,4 +1,4 @@
-using banque;
+using Banque;
 namespace Affichage{
     public class AffichageSolde{
         public static void AffichageDuSolde(int compteChoisi, Client client){

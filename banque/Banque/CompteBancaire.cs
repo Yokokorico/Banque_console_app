@@ -1,6 +1,6 @@
 ﻿using Affichage;
 
-namespace banque
+namespace Banque
 {
     public abstract class CompteBancaire : ITransactionnel
     {
