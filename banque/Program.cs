@@ -19,7 +19,9 @@ public class Program{
         switch (inputClient)
             {
                 case "1":
-                    AffichageCompte.Menu(client);
+                    Console.Clear();
+                    AffichageCompte affichageCompte = new AffichageCompte();    
+                    affichageCompte.Menu(client);
                     inputValid = false;
                     break;
                 case "2": 
