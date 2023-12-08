@@ -67,7 +67,6 @@ class CompteCourant : CompteBancaire
     /// Politique compte courant 
     public override void ObtenirPolitiqueBancaire()
     {
-        try {
             /// Afficher la politique
             Console.WriteLine("Sur votre compte courant vous pouvez deposer, retirer et virer de l'argent.");
             Console.WriteLine("\n1. Le montant maximale pouvant être déposé sur votre compte est de 500€");
@@ -75,10 +74,6 @@ class CompteCourant : CompteBancaire
             Console.WriteLine("\n3. Le montant maximal pouvant être retiré de votre compte est de 300€");
             Console.WriteLine("\n4. Le montant minimal pouvant être retiré de votre compte est de 10€");
             Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 10€");
-        }
-
-        catch (Exception) {
-            Console.WriteLine("Vous n'avez pas accès aux politiques de compte courant");
-        }
+      
     }
 }

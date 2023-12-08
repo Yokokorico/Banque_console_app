@@ -30,13 +30,13 @@ public class AffichageOperationDepot
                                 inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
                 Thread.Sleep(2000);
-                Console.Clear();
+                // Console.Clear();
             }
         }
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            Console.Clear();
+            // Console.Clear();
             AffichageCompte affichageCompte = new AffichageCompte();
             affichageCompte.Menu(client);
             
