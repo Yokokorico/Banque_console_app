@@ -64,4 +64,9 @@ class CompteCourant : CompteBancaire
             }
     }
 
+    public override void ObtenirPolitiqueBancaire()
+    {
+        throw new NotImplementedException();
+    }
+
 }
