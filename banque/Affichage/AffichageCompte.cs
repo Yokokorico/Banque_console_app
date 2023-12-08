@@ -14,7 +14,7 @@ public enum compteChoix
 namespace Affichage {
     public class AffichageCompte {
 
-        public static void Menu(Client client) {
+        public void Menu(Client client) {
             
             bool inputValid = true;
 
@@ -26,11 +26,14 @@ namespace Affichage {
 
             switch (inputClient) {
                 case "1": 
+                Console.Clear();
                 ChoixCompte(client);   
                 inputValid = false;
                 break;
                 case "2":
-                VisionGlobale(client);
+                Console.Clear();
+                AffichageVisionGlobale affichageVisionGlobale = new AffichageVisionGlobale();
+                affichageVisionGlobale.VisionGlobale(client);
                 inputValid = false;
                 break;
                 default:
@@ -41,7 +44,7 @@ namespace Affichage {
         }
 
         }
-        public static void ChoixCompte(Client client){
+        public void ChoixCompte(Client client){
             bool inputValid = true;
             while (inputValid){
            
@@ -53,14 +56,14 @@ namespace Affichage {
                         Console.WriteLine($"{index++}. {compte.numeroCompte}");
                 });
                
-                Int32.TryParse(Console.ReadLine(), out int inputClient);
-
+                if(Int32.TryParse(Console.ReadLine(), out int inputClient)){
                     if (inputClient < 0 || inputClient >= client.comptes.Count + 1)
                     {
                         Console.WriteLine("Veuillez entrer un compte valide");
                     }
                     else
                     {
+                        Console.Clear();
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
                         Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Quitter");
 
@@ -68,15 +71,18 @@ namespace Affichage {
 
                         if (inputCompte == (int)compteChoix.Retirer)
                         {
-                            AffichageOperation.AffichageOperationRetrait(client,numeroComptes[inputClient - 1]);
+                            AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
+                            affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
-                            AffichageOperation.AffichageOperationDepot(client,numeroComptes[inputClient - 1]);
+                            AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
+                            affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
-                            AffichageOperation.AffichageOperationVirement(client,numeroComptes[inputClient - 1]);
+                            AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
+                            affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
@@ -86,49 +92,9 @@ namespace Affichage {
                         {
                             inputValid = false;
                         }
-
                     }
-                }  
-            
-            }
-
-    public static void VisionGlobale(Client client) {
-
-        var index = 1;
-        Console.WriteLine($"Voici tous vos comptes {client.prenom}");
-
-        if (client.comptes.Count == 0)
-        {
-            Console.WriteLine("Vous n'avez pas de compte.");
-
-        } else {client.comptes.ForEach(compte => {
-                Console.WriteLine($"{index++}. {compte.numeroCompte}");
-                Console.WriteLine($"Type de compte : {compte.GetType().Name}");
-                Console.WriteLine($"Solde : {compte.solde}");
-
-                Console.WriteLine("Voulez-vous connaître la politique de vos comptes ? \n1. Oui \n2. Non");
-                    if (!Int32.TryParse(Console.ReadLine(), out int reponse))
-                    {
-                        Console.WriteLine("Entrée invalide !");
-                        return;
-                    }
-
-                    switch (reponse)
-                    {
-                        case 1:
-                            
-                            break;
-                        case 2:
-                            Console.WriteLine("Retour au menu principal !");
-                            break;
-                        default:
-                            Console.WriteLine("Veuillez entrer 1, 2 ou 3.");
-                            break;
-                    }
-                });
+                }
+            }  
         }
-    }
-
-       
     }
 }
