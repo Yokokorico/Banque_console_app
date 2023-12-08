@@ -76,4 +76,9 @@ class CompteCourant : CompteBancaire
             Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 10€");
       
     }
+
+    public override void CalculerFrais(double montant)
+    {
+        throw new NotImplementedException();
+    }
 }

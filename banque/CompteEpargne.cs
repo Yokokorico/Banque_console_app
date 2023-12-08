@@ -87,4 +87,8 @@ class CompteEpargne : CompteBancaire
             Console.WriteLine("\n4. Le montant minimal pouvant être retiré de votre compte est de 50€");
             Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 50€");
     }
+
+    public override void CalculerFrais(double montant) {
+        
+    }
 }
