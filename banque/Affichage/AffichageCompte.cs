@@ -66,7 +66,7 @@ namespace Affichage {
                     {
                         // Console.Clear();
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
-                        Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Quitter");
+                        Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Obtenir politique\n6.Quitter");
 
                         Int32.TryParse(Console.ReadLine(), out int inputCompte);
 
@@ -74,23 +74,28 @@ namespace Affichage {
                         {
                             AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
                             affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
                             AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
                             affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
                             AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
                             affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
                             ChoixCompte(client);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
                             client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Quitter)
                         {
