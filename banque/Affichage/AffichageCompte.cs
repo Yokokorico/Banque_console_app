@@ -7,7 +7,8 @@ public enum compteChoix
     Virement = 2,
     Depot = 3,
     ChangerCompte = 4, 
-    Quitter = 5
+    ObtenirPolitique = 5,
+    Quitter = 6
 }
 
 
@@ -87,6 +88,9 @@ namespace Affichage {
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
                             ChoixCompte(client);
+                        }
+                        else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
+                            client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
                         }
                         else if (inputCompte == (int)compteChoix.Quitter)
                         {
