@@ -7,7 +7,8 @@ public enum compteChoix
     Virement = 2,
     Depot = 3,
     ChangerCompte = 4, 
-    Quitter = 5
+    ObtenirPolitique = 5,
+    Quitter = 6
 }
 
 
@@ -26,12 +27,12 @@ namespace Affichage {
 
             switch (inputClient) {
                 case "1": 
-                Console.Clear();
+                // Console.Clear();
                 ChoixCompte(client);   
                 inputValid = false;
                 break;
                 case "2":
-                Console.Clear();
+                // Console.Clear();
                 AffichageVisionGlobale affichageVisionGlobale = new AffichageVisionGlobale();
                 affichageVisionGlobale.VisionGlobale(client);
                 inputValid = false;
@@ -63,9 +64,9 @@ namespace Affichage {
                     }
                     else
                     {
-                        Console.Clear();
+                        // Console.Clear();
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
-                        Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Quitter");
+                        Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt \n4. Changer de compte \n5. Obtenir politique\n6.Quitter");
 
                         Int32.TryParse(Console.ReadLine(), out int inputCompte);
 
@@ -73,27 +74,35 @@ namespace Affichage {
                         {
                             AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
                             affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
                             AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
                             affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
                             AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
                             affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
                             ChoixCompte(client);
+                            inputValid = false;
+                        }
+                        else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
+                            client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Quitter)
                         {
                             inputValid = false;
                         }
                     }
-                } 
+                }
             }  
         }
     }

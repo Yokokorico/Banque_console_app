@@ -40,6 +40,8 @@ namespace Banque
         /// <param name="montant"></param>
         /// <param name="intituleTrans"></param>
         public abstract void EffectuerDepot(double montant, string intituleTrans);
+
+        public abstract void ObtenirPolitiqueBancaire();
         
     }
 }
