@@ -33,12 +33,12 @@ namespace Affichage
                 switch (inputClient)
                 {
                     case "1":
-                        Console.Clear();
+                        // Console.Clear();
                         ChoixCompte(client);
                         inputValid = false;
                         break;
                     case "2":
-                        Console.Clear();
+                        // Console.Clear();
                         AffichageVisionGlobale affichageVisionGlobale = new AffichageVisionGlobale();
                         affichageVisionGlobale.VisionGlobale(client);
                         inputValid = false;
@@ -74,7 +74,7 @@ namespace Affichage
                     }
                     else
                     {
-                        Console.Clear();
+                        // Console.Clear();
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
                         Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt\n4. Liste des transaction \n5. Changer de compte \n6. Obtenir politique\n7. Quitter");
 
@@ -83,38 +83,40 @@ namespace Affichage
                         if (inputCompte == (int)compteChoix.Retirer)
                         {
                             AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
-                            affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationRetrait.OperationRetraitAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
-
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
                             AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
-                            affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationDepot.OperationDepotAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
                             AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
-                            affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationVirement.OperationVirementAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
-
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Transaction)
                         {
                             AffichageTransaction affichageTransaction = new AffichageTransaction();
                             affichageTransaction.AffichageLesTransactionDuCompte(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
                             ChoixCompte(client);
                             inputValid = false;
                         }
-                        else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
-                            client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
+
+                        else if (inputCompte == (int)compteChoix.ObtenirPolitique)
+                        {
+                            client.comptes.Single(s => s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
                             ChoixCompte(client);
                             inputValid = false;
                         }
