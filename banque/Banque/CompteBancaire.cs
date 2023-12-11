@@ -49,10 +49,10 @@ namespace Banque
 
         public abstract void ObtenirPolitiqueBancaire();
         
+        public abstract double CalculerFrais(double montant, double taux); 
         /// <summary>
         /// Méthode permettant de calculer des frais liés aux opérations
         /// </summary>
-        public abstract double CalculerFrais(double montant, double taux); 
        
 
         public bool TesterNombreDeDecimal(double montant){

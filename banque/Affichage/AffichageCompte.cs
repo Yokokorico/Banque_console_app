@@ -83,38 +83,40 @@ namespace Affichage
                         if (inputCompte == (int)compteChoix.Retirer)
                         {
                             AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
-                            affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationRetrait.OperationRetraitAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
-
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
                             AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
-                            affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationDepot.OperationDepotAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
                             AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
-                            affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
+                            affichageOperationVirement.OperationVirementAffichage(client, numeroComptes[inputClient - 1]);
                             ChoixCompte(client);
-
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Transaction)
                         {
                             AffichageTransaction affichageTransaction = new AffichageTransaction();
                             affichageTransaction.AffichageLesTransactionDuCompte(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
                             ChoixCompte(client);
                             inputValid = false;
                         }
-                        else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
-                            client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
+
+                        else if (inputCompte == (int)compteChoix.ObtenirPolitique)
+                        {
+                            client.comptes.Single(s => s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
                             ChoixCompte(client);
                             inputValid = false;
                         }
