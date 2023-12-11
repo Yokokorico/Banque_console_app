@@ -9,6 +9,7 @@ public class AffichageOperationRetrait{
     /// <param name="numeroCompte"></param>
     public void OperationRetraitAffichage(Client client, int numeroCompte)
     {
+        AffichageCompte affichageCompte = new AffichageCompte();
         try
         {
             var inputUtilisateurValide = true;
@@ -29,14 +30,15 @@ public class AffichageOperationRetrait{
                 inputUtilisateurValide = false;
                 Thread.Sleep(2000);
                 // Console.Clear();
+                affichageCompte.Menu(client);
             }
         }
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
             // Console.Clear();
-            AffichageCompte affichageCompte = new AffichageCompte();
-            affichageCompte.Menu(client);
+            
+            
             
         }
 

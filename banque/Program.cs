@@ -16,6 +16,10 @@ public class Program{
         compte.notificationManager += (message) =>{
             File.AppendAllText("compteLog.txt",message);
         };
+        
+        compteEpargne.notificationManager += (message) =>{
+            File.AppendAllText("compteEpargneLog.txt",message);
+        };
         Console.WriteLine($"Bienvenue {client.nom} {client.prenom} !");
         Console.WriteLine("Voulez-vous accéder à votre espace personnel ?\n1. Oui \n2. Non");
         var inputClient = Console.ReadLine();

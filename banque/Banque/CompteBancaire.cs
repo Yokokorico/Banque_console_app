@@ -27,7 +27,7 @@ namespace Banque
         /// <param name="montant"></param>
         /// <param name="intituleTrans"></param>
         public virtual void EffectuerRetrait(double montant, string intituleTrans){
-            notificationManager.Invoke($"Vous avez effectué un retrait de {montant} sur le compte numéro {numeroCompte}");
+            notificationManager.Invoke($"Vous avez effectué un retrait de {montant} sur le compte numéro {numeroCompte} le {DateTime.Now.ToString()}\n");
         }      
         /// <summary>
         /// Méthode permettant d'effectuer un virement vers un autre compte
@@ -36,7 +36,7 @@ namespace Banque
         /// <param name="intituleTrans"></param>
         /// <param name="numeroComptePourTransfere"></param>
         public virtual void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere){
-            notificationManager.Invoke($"Vous avez effectué un virement de {montant} sur le compte numéro {numeroCompte}");
+            notificationManager.Invoke($"Vous avez effectué un virement de {montant} sur le compte numéro {numeroCompte} vers le compte numéro {numeroComptePourTransfere} le {DateTime.Now.ToString()}\n");
         }  
         /// <summary>
         /// Méthode permettant d'effectuer un depôt sur son compte
@@ -44,7 +44,7 @@ namespace Banque
         /// <param name="montant"></param>
         /// <param name="intituleTrans"></param>
         public virtual void EffectuerDepot(double montant, string intituleTrans){
-            notificationManager.Invoke($"Vous avez effectué un depot de {montant} sur le compte numéro {numeroCompte}");
+            notificationManager.Invoke($"Vous avez effectué un depot de {montant} sur le compte numéro {numeroCompte} le {DateTime.Now.ToString()}\n");
         }  
 
         public abstract void ObtenirPolitiqueBancaire();
