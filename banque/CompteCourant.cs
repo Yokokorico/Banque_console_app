@@ -6,38 +6,79 @@ class CompteCourant : CompteBancaire
     public CompteCourant(Client client, bool autoDecouvert) : base(client, autoDecouvert)
     {
     }
+    // public override void EffectuerRetrait(double montant, string intituleTrans)
+    // {
+    //     try
+    //     {
+    //         if (montant > solde && autorisationDecouvert == false)
+    //         {
+    //             throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
+    //         }
+    //         else if (!TesterNombreDeDecimal(montant))
+    //         {
+    //             throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
+    //         }
+
+    //         else {
+    //         double frais = CalculerFrais(montant, 0.04);
+    //         listeTransaction.Add(new Transaction("services", frais));
+    //         Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+
+    //         Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+    //         }
+
+    //         Console.WriteLine($"Votre solde avant opération Retrait-> {solde}");
+    //         montant = 0 - montant;
+    //         listeTransaction.Add(new Transaction(intituleTrans, montant));
+    //         Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
+    //         base.EffectuerRetrait(montant, intituleTrans);
+
+    //     }
+    //     catch (InvalidOperationException ex)
+    //     {
+    //         string messageInvalidOperation = $"Erreur : {ex.Message}";
+    //         Console.WriteLine(messageInvalidOperation);
+    //         throw new InvalidOperationException(messageInvalidOperation, ex);
+    //     }
+    // }
+
     public override void EffectuerRetrait(double montant, string intituleTrans)
+{
+    try
     {
-        try
+        if (montant > solde && autorisationDecouvert == false)
         {
-            if (montant > solde && autorisationDecouvert == false)
-            {
-                throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
-            }
-            else if (!TesterNombreDeDecimal(montant))
-            {
-                throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
-            }
+            throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
+        }
+        else if (!TesterNombreDeDecimal(montant))
+        {
+            throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
+        }
+        else
+        {
             Console.WriteLine($"Votre solde avant opération Retrait-> {solde}");
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
+
+            // Cas où le retrait est autorisé
+            if (autorisationDecouvert == true)
+            {
+                double frais = CalculerFrais(montant, 0.04);
+                listeTransaction.Add(new Transaction("services", frais));
+                Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+            }
+
             base.EffectuerRetrait(montant, intituleTrans);
-
-            double frais = CalculerFrais(montant, 0.04);
-            listeTransaction.Add(new Transaction("services", frais));
-            Console.WriteLine($"Frais bancaires appliqués-> {frais}");
-
-            Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
-
-        }
-        catch (InvalidOperationException ex)
-        {
-            string messageInvalidOperation = $"Erreur : {ex.Message}";
-            Console.WriteLine(messageInvalidOperation);
-            throw new InvalidOperationException(messageInvalidOperation, ex);
         }
     }
+    catch (InvalidOperationException ex)
+    {
+        string messageInvalidOperation = $"Erreur : {ex.Message}";
+        Console.WriteLine(messageInvalidOperation);
+        throw new InvalidOperationException(messageInvalidOperation, ex);
+    }
+}
 
     public override void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
     {

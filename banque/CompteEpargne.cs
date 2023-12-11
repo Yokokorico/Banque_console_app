@@ -75,10 +75,20 @@ class CompteEpargne : CompteBancaire
                 throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
             }
 
-            Console.WriteLine($"Votre solde avant opération -> {solde}");
-            listeTransaction.Add(new Transaction(intituleTrans, montant));
-            Console.WriteLine($"Votre solde après opération -> {solde}");
-            base.EffectuerDepot(montant, intituleTrans);
+            else {
+                Console.WriteLine($"Votre solde avant opération -> {solde}");
+                listeTransaction.Add(new Transaction(intituleTrans, montant));
+                Console.WriteLine($"Votre solde après opération -> {solde}");
+
+            if (autorisationDecouvert == true)
+            {
+                double frais = CalculerFrais(montant, 0.08);
+                listeTransaction.Add(new Transaction("agios", frais));
+                Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+            }
+
+                base.EffectuerDepot(montant, intituleTrans);
+            }
 
         }
         catch (InvalidOperationException ex)
