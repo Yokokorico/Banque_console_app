@@ -5,7 +5,7 @@ namespace Banque {
         public DateTime date {get; set;}
 
         public Transaction(string intituleTrans,double montantTrans){
-            if(intitule != ""){
+            if(!string.IsNullOrEmpty(intituleTrans)){
                 intitule=intituleTrans;
             }else{
                 intitule="Transaction";
