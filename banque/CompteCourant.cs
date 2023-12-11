@@ -1,6 +1,6 @@
 using Banque;
 
-class CompteCourant : CompteBancaire
+public class CompteCourant : CompteBancaire
 {
     const double DEPOTMINIMAL = 0.1;
     public CompteCourant(Client client, bool autoDecouvert) : base(client, autoDecouvert)
