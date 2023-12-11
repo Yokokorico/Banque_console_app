@@ -74,18 +74,21 @@ namespace Affichage {
                         {
                             AffichageOperationRetrait affichageOperationRetrait = new AffichageOperationRetrait();
                             affichageOperationRetrait.OperationRetraitAffichage(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Depot)
                         {
                             AffichageOperationDepot affichageOperationDepot = new AffichageOperationDepot();
                             affichageOperationDepot.OperationDepotAffichage(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Virement)
                         {
                             AffichageOperationVirement affichageOperationVirement = new AffichageOperationVirement();
                             affichageOperationVirement.OperationVirementAffichage(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
@@ -95,6 +98,7 @@ namespace Affichage {
                         }
                         else if (inputCompte == (int)compteChoix.ObtenirPolitique) {
                             client.comptes.Single(s=> s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();
+                            ChoixCompte(client);
                             inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.Quitter)

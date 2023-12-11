@@ -19,6 +19,12 @@ class CompteCourant : CompteBancaire
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
 
+            double frais = CalculerFrais(montant, 0.04);
+            listeTransaction.Add(new Transaction("services", frais));
+            Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+
+            Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+
         }
         catch (InvalidOperationException ex)
         {
@@ -77,8 +83,10 @@ class CompteCourant : CompteBancaire
       
     }
 
-    public override void CalculerFrais(double montant)
+    public override double CalculerFrais(double montant, double taux)
     {
-        throw new NotImplementedException();
+        double services = montant * taux;
+        return services;
+       
     }
 }

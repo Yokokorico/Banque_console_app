@@ -43,7 +43,7 @@ namespace Banque
 
         public abstract void ObtenirPolitiqueBancaire();
         
-        public abstract void CalculerFrais(double montant); 
+        public abstract double CalculerFrais(double montant, double taux); 
         /// <summary>
         /// Méthode permettant de calculer des frais liés aux opérations
         /// </summary>

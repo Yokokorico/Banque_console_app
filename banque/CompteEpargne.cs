@@ -20,7 +20,12 @@ class CompteEpargne : CompteBancaire
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération -> {solde}");
+            
+            double frais = CalculerFrais(montant, 0.08);
+            listeTransaction.Add(new Transaction("agios", frais));
+            Console.WriteLine($"Frais bancaires appliqués-> {frais}");
 
+            Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
         }
         catch (InvalidOperationException ex)
         {
@@ -88,7 +93,9 @@ class CompteEpargne : CompteBancaire
             Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 50€");
     }
 
-    public override void CalculerFrais(double montant) {
-        
+    public override double CalculerFrais(double montant, double taux) 
+    {
+        double agios = montant * taux;
+        return agios;
     }
 }
