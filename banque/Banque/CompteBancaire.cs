@@ -49,5 +49,12 @@ namespace Banque
 
         public abstract void ObtenirPolitiqueBancaire();
         
+        public bool TesterNombreDeDecimal(double montant){
+            string partieDecimaleStr = (montant - Math.Floor(montant)).ToString().TrimStart('0');
+            if(partieDecimaleStr.Length > 2){
+                return false;
+            }
+            return true;
+        }
     }
 }
