@@ -111,6 +111,7 @@ namespace Affichage
                             ChoixCompte(client);
                             inputValid = false;
                         }
+
                         else if (inputCompte == (int)compteChoix.ObtenirPolitique)
                         {
                             client.comptes.Single(s => s.numeroCompte == numeroComptes[inputClient - 1]).ObtenirPolitiqueBancaire();

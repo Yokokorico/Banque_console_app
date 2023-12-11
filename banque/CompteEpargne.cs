@@ -24,12 +24,15 @@ class CompteEpargne : CompteBancaire
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération -> {solde}");
-            base.EffectuerRetrait(montant, intituleTrans);            
+            
             double frais = CalculerFrais(montant, 0.08);
             listeTransaction.Add(new Transaction("agios", frais));
             Console.WriteLine($"Frais bancaires appliqués-> {frais}");
 
             Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+
+            base.EffectuerRetrait(montant, intituleTrans);
+
         }
         catch (InvalidOperationException ex)
         {
