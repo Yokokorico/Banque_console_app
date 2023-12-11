@@ -11,6 +11,7 @@ public class AffichageOperationDepot
     /// <param name="numeroCompte"></param>
     public void OperationDepotAffichage(Client client, int numeroCompte)
     {
+        AffichageCompte affichageCompte = new AffichageCompte();
         try
         {
             var inputUtilisateurValide = true;
@@ -30,16 +31,16 @@ public class AffichageOperationDepot
                                 inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
                 Thread.Sleep(2000);
-                // Console.Clear();
+                Console.Clear();
+                affichageCompte.Menu(client);      
+
             }
         }
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            // Console.Clear();
-            AffichageCompte affichageCompte = new AffichageCompte();
-            affichageCompte.Menu(client);
-            
+            Console.Clear();
+            affichageCompte.Menu(client);      
         }
     }
 }
