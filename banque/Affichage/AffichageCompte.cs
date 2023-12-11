@@ -105,6 +105,8 @@ namespace Affichage
                         {
                             AffichageTransaction affichageTransaction = new AffichageTransaction();
                             affichageTransaction.AffichageLesTransactionDuCompte(client,numeroComptes[inputClient - 1]);
+                            ChoixCompte(client);
+                            inputValid = false;
                         }
                         else if (inputCompte == (int)compteChoix.ChangerCompte)
                         {
