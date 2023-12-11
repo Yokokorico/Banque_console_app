@@ -1,7 +1,8 @@
 using Banque;
 namespace Affichage;
 
-public class AffichageOperationRetrait{
+public class AffichageOperationRetrait
+{
     /// <summary>
     /// Méthode d'affichage question réponse pour le Retrait
     /// </summary>
@@ -25,21 +26,19 @@ public class AffichageOperationRetrait{
                 Console.WriteLine("Entrez un intitulé (Optionnel)");
                 var inituleEntrerParUtilisateur = Console.ReadLine();
                 client.comptes.Single(s => s.numeroCompte == numeroCompte)
-                .EffectuerRetrait(montantEntrerParUtilisateur, 
+                .EffectuerRetrait(montantEntrerParUtilisateur,
                                     inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
                 Thread.Sleep(2000);
-                // Console.Clear();
+                Console.Clear();
                 affichageCompte.Menu(client);
             }
         }
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            // Console.Clear();
-            
-            
-            
+            Console.Clear();
+            affichageCompte.Menu(client);
         }
 
     }
