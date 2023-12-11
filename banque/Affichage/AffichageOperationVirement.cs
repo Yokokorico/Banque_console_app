@@ -42,7 +42,7 @@ public class AffichageOperationVirement{
                                             numeroComptePourEnvoiVirement);
                     inputUtilisateurValide = false;
                     Thread.Sleep(2000);
-                    // Console.Clear();    
+                    Console.Clear();    
                     affichageCompte.Menu(client);
                 }
 
@@ -52,7 +52,7 @@ public class AffichageOperationVirement{
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            // Console.Clear();
+            Console.Clear();
             
             affichageCompte.Menu(client);
             
