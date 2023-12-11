@@ -18,6 +18,7 @@ class CompteCourant : CompteBancaire
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
+            base.EffectuerRetrait(montant,intituleTrans);
 
         }
         catch (InvalidOperationException ex)
@@ -33,6 +34,7 @@ class CompteCourant : CompteBancaire
         try{
             client.comptes.Single(s=>s.numeroCompte==numeroComptePourTransfere).EffectuerDepot(montant,intituleTrans);
             EffectuerRetrait(montant,intituleTrans);
+            base.EffectuerVirement(montant,intituleTrans,numeroComptePourTransfere);
         }
         catch (InvalidOperationException ex)
         {
@@ -54,7 +56,7 @@ class CompteCourant : CompteBancaire
                 Console.WriteLine($"Votre solde avant opération Depot-> {solde}");
                 listeTransaction.Add(new Transaction(intituleTrans, montant));
                 Console.WriteLine($"Votre solde après opération Depot-> {solde}");
-
+                base.EffectuerDepot(montant,intituleTrans);
             }
             catch (InvalidOperationException ex)
             {
