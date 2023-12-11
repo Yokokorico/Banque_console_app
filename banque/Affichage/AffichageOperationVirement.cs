@@ -8,6 +8,7 @@ public class AffichageOperationVirement{
     /// <param name="numeroCompte"></param>
     public void OperationVirementAffichage(Client client, int numeroCompte)
     {
+        AffichageCompte affichageCompte = new AffichageCompte();
         try
         {
             var inputUtilisateurValide = true;
@@ -25,6 +26,7 @@ public class AffichageOperationVirement{
                 while (inputNumeroDeCompteValide)
                 {
                     Console.WriteLine("Entrez le numéro de compte de receveur");
+
                     if (!Int32.TryParse(Console.ReadLine(), out int numeroComptePourEnvoiVirement))
                     {
                         Console.WriteLine("Merci de rentrer un numéro de compte valide");
@@ -40,7 +42,8 @@ public class AffichageOperationVirement{
                                             numeroComptePourEnvoiVirement);
                     inputUtilisateurValide = false;
                     Thread.Sleep(2000);
-                    // Console.Clear();    
+                    Console.Clear();    
+                    affichageCompte.Menu(client);
                 }
 
 
@@ -49,8 +52,8 @@ public class AffichageOperationVirement{
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            // Console.Clear();
-            AffichageCompte affichageCompte = new AffichageCompte();
+            Console.Clear();
+            
             affichageCompte.Menu(client);
             
         }
