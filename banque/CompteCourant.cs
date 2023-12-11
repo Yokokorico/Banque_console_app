@@ -24,6 +24,12 @@ class CompteCourant : CompteBancaire
             Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
             base.EffectuerRetrait(montant, intituleTrans);
 
+            double frais = CalculerFrais(montant, 0.04);
+            listeTransaction.Add(new Transaction("services", frais));
+            Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+
+            Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+
         }
         catch (InvalidOperationException ex)
         {
@@ -90,5 +96,12 @@ class CompteCourant : CompteBancaire
         Console.WriteLine("\n4. Le montant minimal pouvant être retiré de votre compte est de 10€");
         Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 10€");
 
+    }
+
+    public override double CalculerFrais(double montant, double taux)
+    {
+        double services = montant * taux;
+        return services;
+       
     }
 }

@@ -49,6 +49,12 @@ namespace Banque
 
         public abstract void ObtenirPolitiqueBancaire();
         
+        /// <summary>
+        /// Méthode permettant de calculer des frais liés aux opérations
+        /// </summary>
+        public abstract double CalculerFrais(double montant, double taux); 
+       
+
         public bool TesterNombreDeDecimal(double montant){
             string partieDecimaleStr = (montant - Math.Floor(montant)).ToString().TrimStart('0');
             if(partieDecimaleStr.Length > 2){
@@ -56,5 +62,6 @@ namespace Banque
             }
             return true;
         }
+
     }
 }

@@ -24,7 +24,15 @@ class CompteEpargne : CompteBancaire
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération -> {solde}");
+
+       
+            double frais = CalculerFrais(montant, 0.08);
+            listeTransaction.Add(new Transaction("agios", frais));
+            Console.WriteLine($"Frais bancaires appliqués-> {frais}");
+
+            Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
             base.EffectuerRetrait(montant, intituleTrans);
+
         }
         catch (InvalidOperationException ex)
         {
@@ -91,5 +99,11 @@ class CompteEpargne : CompteBancaire
         Console.WriteLine("\n3. Le montant maximal pouvant être retiré de votre compte est de 500€");
         Console.WriteLine("\n4. Le montant minimal pouvant être retiré de votre compte est de 50€");
         Console.WriteLine("\n5. Le montant minimal pouvant être transféré sur un autre compte est de 50€");
+    }
+
+    public override double CalculerFrais(double montant, double taux) 
+    {
+        double agios = montant * taux;
+        return agios;
     }
 }
