@@ -26,6 +26,7 @@ public class AffichageOperationVirement{
                 while (inputNumeroDeCompteValide)
                 {
                     Console.WriteLine("Entrez le numéro de compte de receveur");
+
                     if (!Int32.TryParse(Console.ReadLine(), out int numeroComptePourEnvoiVirement))
                     {
                         Console.WriteLine("Merci de rentrer un numéro de compte valide");
