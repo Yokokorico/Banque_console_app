@@ -8,6 +8,7 @@ public class AffichageOperationVirement{
     /// <param name="numeroCompte"></param>
     public void OperationVirementAffichage(Client client, int numeroCompte)
     {
+        AffichageCompte affichageCompte = new AffichageCompte();
         try
         {
             var inputUtilisateurValide = true;
@@ -41,6 +42,7 @@ public class AffichageOperationVirement{
                     inputUtilisateurValide = false;
                     Thread.Sleep(2000);
                     // Console.Clear();    
+                    affichageCompte.Menu(client);
                 }
 
 
@@ -50,7 +52,7 @@ public class AffichageOperationVirement{
         {
             Thread.Sleep(2000);
             // Console.Clear();
-            AffichageCompte affichageCompte = new AffichageCompte();
+            
             affichageCompte.Menu(client);
             
         }

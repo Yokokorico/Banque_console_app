@@ -20,7 +20,7 @@ class CompteEpargne : CompteBancaire
             montant = 0 - montant;
             listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération -> {solde}");
-
+            base.EffectuerRetrait(montant,intituleTrans);
         }
         catch (InvalidOperationException ex)
         {
@@ -43,7 +43,7 @@ class CompteEpargne : CompteBancaire
             listeTransaction.Add(new Transaction(intituleTrans, montantARetirer));
             client.comptes.Single(s => s.numeroCompte == numeroComptePourTransfere).listeTransaction.Add(new Transaction(intituleTrans, montant));
             Console.WriteLine($"Votre solde après opération -> {solde}");
-
+            base.EffectuerVirement(montant,intituleTrans,numeroComptePourTransfere); 
         }
         catch (InvalidOperationException ex)
         {
@@ -66,6 +66,7 @@ class CompteEpargne : CompteBancaire
                 Console.WriteLine($"Votre solde avant opération -> {solde}");
                 listeTransaction.Add(new Transaction(intituleTrans, montant));
                 Console.WriteLine($"Votre solde après opération -> {solde}");
+                base.EffectuerDepot(montant,intituleTrans);
 
             }
             catch (InvalidOperationException ex)
