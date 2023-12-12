@@ -11,48 +11,52 @@ public class CompteCourant : CompteBancaire
     }
 
     public override void EffectuerRetrait(double montant, string intituleTrans)
-{
-    try
     {
-        if (montant > solde && autorisationDecouvert == false)
+        try
         {
-            throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
-        }
-        else if (!TesterNombreDeDecimal(montant))
-        {
-            throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
-        }
-        else if (montant > RETRAITMAX)
-        {
-            throw new InvalidOperationException("Le montant maximal est de 1000€");
-        }
-        else
-        {
-            Console.WriteLine($"Votre solde avant opération Retrait-> {solde}");
-            montant = 0 - montant;
-            listeTransaction.Add(new Transaction(intituleTrans, montant));
-            Console.WriteLine($"Votre solde après opération Retrait-> {solde}");
-
-            // Cas où le retrait est autorisé
-            if (montant >= solde && autorisationDecouvert == true)
+            if (montant > getSolde() && autorisationDecouvert == false)
             {
-                double frais = CalculerFrais(montant, 0.04);
-                double services = montant * 0.04;
-                listeTransaction.Add(new Transaction("services", services));
-                Console.WriteLine($"Frais bancaires appliqués-> {services}");
-                Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+                throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
             }
+            else if (!TesterNombreDeDecimal(montant))
+            {
+                throw new InvalidOperationException("Merci de mettre au maximum 2 chiffre après la virgule");
+            }
+            else if (montant > RETRAITMAX)
+            {
+                throw new InvalidOperationException("Le montant maximal est de 1000€");
+            }
+            else if (montant < 0.1)
+            {
+                throw new InvalidOperationException("Merci de rentrer un nombre positif seulement");
+            }
+            else
+            {
+                Console.WriteLine($"Votre solde avant opération Retrait-> {getSolde()}");
+                montant = 0 - montant;
+                listeTransaction.Add(new Transaction(intituleTrans, montant));
+                Console.WriteLine($"Votre solde après opération Retrait-> {getSolde()}");
 
-            base.EffectuerRetrait(montant, intituleTrans);
+                // Cas où le retrait est autorisé
+                if (montant >= getSolde() && autorisationDecouvert == true)
+                {
+                    double frais = CalculerFrais(montant, 0.04);
+                    double services = montant * 0.04;
+                    listeTransaction.Add(new Transaction("services", services));
+                    Console.WriteLine($"Frais bancaires appliqués-> {services}");
+                    Console.WriteLine($"Votre solde après opération frais bancaire-> {getSolde()}");
+                }
+
+                base.EffectuerRetrait(montant, intituleTrans);
+            }
+        }
+        catch (InvalidOperationException ex)
+        {
+            string messageInvalidOperation = $"Erreur : {ex.Message}";
+            Console.WriteLine(messageInvalidOperation);
+            throw new InvalidOperationException(messageInvalidOperation, ex);
         }
     }
-    catch (InvalidOperationException ex)
-    {
-        string messageInvalidOperation = $"Erreur : {ex.Message}";
-        Console.WriteLine(messageInvalidOperation);
-        throw new InvalidOperationException(messageInvalidOperation, ex);
-    }
-}
 
     public override void EffectuerVirement(double montant, string intituleTrans, int numeroComptePourTransfere)
     {
@@ -94,10 +98,11 @@ public class CompteCourant : CompteBancaire
             {
                 throw new InvalidOperationException("Le montant maximal est de 4000€");
             }
-            else {
-                Console.WriteLine($"Votre solde avant opération Depot-> {solde}");
+            else
+            {
+                Console.WriteLine($"Votre solde avant opération Depot-> {getSolde()}");
                 listeTransaction.Add(new Transaction(intituleTrans, montant));
-                Console.WriteLine($"Votre solde après opération Depot-> {solde}");
+                Console.WriteLine($"Votre solde après opération Depot-> {getSolde()}");
                 base.EffectuerDepot(montant, intituleTrans);
             }
         }
@@ -127,6 +132,6 @@ public class CompteCourant : CompteBancaire
     {
         double services = montant * taux;
         return services;
-       
+
     }
 }
