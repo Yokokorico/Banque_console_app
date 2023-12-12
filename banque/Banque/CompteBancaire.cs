@@ -46,15 +46,19 @@ namespace Banque
         public virtual void EffectuerDepot(double montant, string intituleTrans){
             notificationManager.Invoke($"Vous avez effectué un depot de {montant} sur le compte numéro {numeroCompte} le {DateTime.Now.ToString()}\n");
         }  
-
+        /// <summary>
+        /// Méthode affichant les politiques du compte
+        /// </summary>
         public abstract void ObtenirPolitiqueBancaire();
-        
-        public abstract double CalculerFrais(double montant, double taux); 
         /// <summary>
         /// Méthode permettant de calculer des frais liés aux opérations
         /// </summary>
-       
-
+        public abstract double CalculerFrais(double montant, double taux); 
+        /// <summary>
+        /// Permet de vérifier si un nombre décimal à seulement 2 chiffre après la virgule
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns>boolean</returns>
         public bool TesterNombreDeDecimal(double montant){
             string partieDecimaleStr = (montant - Math.Floor(montant)).ToString().TrimStart('0');
             if(partieDecimaleStr.Length > 2){
@@ -62,7 +66,10 @@ namespace Banque
             }
             return true;
         }
-
+        /// <summary>
+        /// Calcul le solde du compte actuel en faisant la somme de toute les transactions dans la liste 
+        /// </summary>
+        /// <returns></returns>
         public double CalculSolde(){
             if(listeTransaction.Count == 0){
                 return 0;
@@ -70,7 +77,10 @@ namespace Banque
                 return listeTransaction.Sum(objet => objet.montant);
             }
         }
-
+        /// <summary>
+        /// Getter du solde
+        /// </summary>
+        /// <returns>double solde du compte</returns>
         public double getSolde(){
             return solde;
         }

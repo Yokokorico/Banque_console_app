@@ -4,7 +4,12 @@ namespace Affichage;
 
 public class AffichageTransaction
 {
-
+    /// <summary>
+    /// Afficher toutes les transactions détailliées d'un compte donné
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="numeroCompte"></param>
+    /// <exception cref="InvalidDataException">Liste vide</exception>
     public void AffichageLesTransactionDuCompte(Client client, int numeroCompte)
     {
 

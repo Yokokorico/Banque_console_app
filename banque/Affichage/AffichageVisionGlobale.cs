@@ -3,6 +3,10 @@ using Banque;
 
 public class AffichageVisionGlobale
 {
+    /// <summary>
+    /// Affiche la totalité des compte d'un client avec quelques informations
+    /// </summary>
+    /// <param name="client"></param>
     public void VisionGlobale(Client client)
     {
 

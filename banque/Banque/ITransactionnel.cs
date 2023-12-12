@@ -1,3 +1,4 @@
+namespace Banque;
 public interface ITransactionnel{
     public void EffectuerRetrait(double montant, string intituleTrans);
 
