@@ -30,14 +30,18 @@ public class AffichageOperationRetrait
                                     inituleEntrerParUtilisateur);
                 inputUtilisateurValide = false;
                 Thread.Sleep(2000);
-                //Console.Clear();
+
+                Console.Clear();
+
                 affichageCompte.Menu(client);
             }
         }
         catch (InvalidOperationException ex)
         {
             Thread.Sleep(2000);
-            //Console.Clear();
+
+            Console.Clear();
+
             affichageCompte.Menu(client);
         }
 
