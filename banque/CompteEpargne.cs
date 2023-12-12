@@ -15,7 +15,7 @@ class CompteEpargne : CompteBancaire
     {
         try
         {
-            if (montant > solde && autorisationDecouvert == false)
+            if (montant > getSolde() && autorisationDecouvert == false)
             {
                 throw new InvalidOperationException("Vous ne pouvez pas retirer car votre solde est trop faible et vous n'avez pas l'autorisation au découvert");
             }
@@ -25,25 +25,30 @@ class CompteEpargne : CompteBancaire
             }
             else if (montant > RETRAITMAX)
             {
-            throw new InvalidOperationException("Le montant maximal est de 2000€");
+                throw new InvalidOperationException("Le montant maximal est de 2000€");
             }
-           else {
-            Console.WriteLine($"Votre solde avant opération -> {solde}");
-            montant = 0 - montant;
-            listeTransaction.Add(new Transaction(intituleTrans, montant));
-            Console.WriteLine($"Votre solde après opération -> {solde}");
-            
-            if (montant >= solde && autorisationDecouvert == true)
+            else if (montant < 0.1)
             {
-                double frais = CalculerFrais(montant, 0.08);
-                double agios = montant * 0.08;
-                listeTransaction.Add(new Transaction("agios", agios));
-                Console.WriteLine($"Frais bancaires appliqués-> {agios}");
-                Console.WriteLine($"Votre solde après opération frais bancaire-> {solde}");
+                throw new InvalidOperationException("Merci de rentrer un nombre positif seulement");
             }
+            else
+            {
+                Console.WriteLine($"Votre solde avant opération -> {getSolde()}");
+                montant = 0 - montant;
+                listeTransaction.Add(new Transaction(intituleTrans, montant));
+                Console.WriteLine($"Votre solde après opération -> {getSolde()}");
 
-            base.EffectuerRetrait(montant, intituleTrans);
-        }
+                if (montant >= getSolde() && autorisationDecouvert == true)
+                {
+                    double frais = CalculerFrais(montant, 0.08);
+                    double agios = montant * 0.08;
+                    listeTransaction.Add(new Transaction("agios", agios));
+                    Console.WriteLine($"Frais bancaires appliqués-> {agios}");
+                    Console.WriteLine($"Votre solde après opération frais bancaire-> {getSolde()}");
+                }
+
+                base.EffectuerRetrait(montant, intituleTrans);
+            }
 
         }
         catch (InvalidOperationException ex)
@@ -64,7 +69,7 @@ class CompteEpargne : CompteBancaire
             }
             else if (montant > VIREMENTMAX)
             {
-            throw new InvalidOperationException("Le montant maximal est de 2000€");
+                throw new InvalidOperationException("Le montant maximal est de 2000€");
             }
             client.comptes.Single(s => s.numeroCompte == numeroComptePourTransfere).EffectuerDepot(montant, intituleTrans);
             EffectuerRetrait(montant, intituleTrans);
@@ -92,13 +97,14 @@ class CompteEpargne : CompteBancaire
             }
             else if (montant > DEPOTMAXIMAL)
             {
-            throw new InvalidOperationException("Le montant maximal est de 8000€");
+                throw new InvalidOperationException("Le montant maximal est de 8000€");
             }
 
-            else {
-                Console.WriteLine($"Votre solde avant opération -> {solde}");
+            else
+            {
+                Console.WriteLine($"Votre solde avant opération -> {getSolde()}");
                 listeTransaction.Add(new Transaction(intituleTrans, montant));
-                Console.WriteLine($"Votre solde après opération -> {solde}");
+                Console.WriteLine($"Votre solde après opération -> {getSolde()}");
 
                 base.EffectuerDepot(montant, intituleTrans);
             }
@@ -125,7 +131,7 @@ class CompteEpargne : CompteBancaire
         Console.WriteLine("\n6. Le montant minimal pouvant être transféré sur un autre compte est de 0,1€");
     }
 
-    public override double CalculerFrais(double montant, double taux) 
+    public override double CalculerFrais(double montant, double taux)
     {
         double agios = montant * taux;
         return agios;

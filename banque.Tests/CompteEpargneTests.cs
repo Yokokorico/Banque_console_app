@@ -34,6 +34,16 @@ public class CompteEpargneTests
     {
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0, ""));
     }
+    [Test]
+    public void EffectuerRetrait_ToBigAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(2001, ""));
+    }
+    [Test]
+    public void EffectuerRetrait_ToLowAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0.01, ""));
+    }
     /************************************************************************************/
     /*                          EffectuerDepot Test                                     */
     /************************************************************************************/
@@ -52,7 +62,37 @@ public class CompteEpargneTests
     {
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0, ""));
     }
+    [Test]
+    public void EffectuerDepot_ToBigAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(8001, ""));
+    }
+    [Test]
+    public void EffectuerDepot_ToLowAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0.01, ""));
+    }
     /************************************************************************************/
     /*                          EffectuerVirement Test                                     */
     /************************************************************************************/
+    [Test]
+    public void EffectuerVirement_ToLowAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0.01, ""));
+    }
+    [Test]
+    public void EffectuerVirement_ToBigAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(2001, ""));
+    }
+    [Test]
+    public void EffectuerVirement_HaveZeroAmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0, ""));
+    }
+    [Test]
+    public void EffectuerVirement_HaveNegatifAmmount_Throw_Exception()
+    {
+        Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(-100, ""));
+    }
 }

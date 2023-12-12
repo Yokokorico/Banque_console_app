@@ -25,7 +25,7 @@ public class CompteBancaireTests
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(1.123456798, ""));
     }
     [Test]
-    public void EffectuerRetrait_HavePositifsOverdraftAccount_Throw_Exception()
+    public void EffectuerRetrait_HaveNegativeOverdraftAccount_Throw_Exception()
     {
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(100, ""));
     }
@@ -34,6 +34,7 @@ public class CompteBancaireTests
     {
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0, ""));
     }
+    
     /************************************************************************************/
     /*                          EffectuerDepot Test                                     */
     /************************************************************************************/
@@ -53,6 +54,12 @@ public class CompteBancaireTests
         Assert.Throws<InvalidOperationException>(() => _compteBancaire.EffectuerRetrait(0, ""));
     }
     /************************************************************************************/
-    /*                          EffectuerVirement Test                                     */
+    /*                                CalculSolde                                       */
     /************************************************************************************/
+    [Test]
+    public void CalculSolde_HaveNoTransactionInAcount()
+    {
+        Assert.That(_compteBancaire.CalculSolde(), Is.EqualTo(0)); // Vérifie le nombre total de lignes
+    }
+
 }
