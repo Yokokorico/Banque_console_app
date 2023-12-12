@@ -5,10 +5,10 @@ namespace Banque
     public abstract class CompteBancaire : ITransactionnel
     {
         public Client client { get; set; }
-        public double solde
-        {
-            get { return AffichageSolde.CalculSolde(numeroCompte, this.client); }
-            set { solde = value; }
+        protected double solde
+        { 
+            get { return CalculSolde();}
+            set {solde = value;}
         }
         public int numeroCompte { get; set; }
         public List<Transaction> listeTransaction { get; set; } = new List<Transaction>();
@@ -63,5 +63,16 @@ namespace Banque
             return true;
         }
 
+        public double CalculSolde(){
+            if(listeTransaction.Count == 0){
+                return 0;
+            }else{
+                return listeTransaction.Sum(objet => objet.montant);
+            }
+        }
+
+        public double getSolde(){
+            return solde;
+        }
     }
 }

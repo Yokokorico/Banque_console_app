@@ -20,7 +20,7 @@ public class AffichageVisionGlobale
             {
                 Console.WriteLine($"{index++}. {compte.numeroCompte}");
                 Console.WriteLine($"Type de compte : {compte.GetType().Name}");
-                Console.WriteLine($"Solde : {compte.solde}");
+                Console.WriteLine($"Solde : {compte.getSolde()}");
             });
             Console.WriteLine("Appuyer sur entrée pour continuer...");
             Console.ReadLine();

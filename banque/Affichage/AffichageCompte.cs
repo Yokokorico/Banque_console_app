@@ -78,10 +78,10 @@ namespace Affichage
                     }
                     else
                     {
-
                         Console.Clear();
 
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
+
                         Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt\n4. Liste des transaction \n5. Changer de compte \n6. Obtenir politique\n7. Quitter");
 
                         Int32.TryParse(Console.ReadLine(), out int inputCompte);
