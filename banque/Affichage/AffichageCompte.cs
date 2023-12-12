@@ -17,7 +17,10 @@ namespace Affichage
 {
     public class AffichageCompte
     {
-
+        /// <summary>
+        /// Affichage du menu principal
+        /// </summary>
+        /// <param name="client"></param>
         public void Menu(Client client)
         {
 
@@ -55,6 +58,10 @@ namespace Affichage
             }
 
         }
+        /// <summary>
+        /// Affiche la liste des comptes puis affiche les actions liées au compte
+        /// </summary>
+        /// <param name="client"></param>
         public void ChoixCompte(Client client)
         {
             bool inputValid = true;

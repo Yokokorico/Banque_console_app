@@ -1,5 +1,4 @@
-using Banque;
-
+namespace Banque;
 class CompteEpargne : CompteBancaire
 {
     const double DEPOTMINIMAL = 0.1;
@@ -117,11 +116,8 @@ class CompteEpargne : CompteBancaire
             throw new InvalidOperationException(messageInvalidOperation, ex);
         }
     }
-
-    /// politique compte Epargne
     public override void ObtenirPolitiqueBancaire()
     {
-        /// Afficher la politique
         Console.WriteLine("Sur votre compte courant vous pouvez deposer, retirer et virer de l'argent.");
         Console.WriteLine("\n1. Le montant maximale pouvant être déposé sur votre compte est de 8000€");
         Console.WriteLine("\n2. Le montant minimal pouvant être déposé sur votre compte est de 0,1€");
