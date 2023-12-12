@@ -33,12 +33,16 @@ namespace Affichage
                 switch (inputClient)
                 {
                     case "1":
+
                         Console.Clear();
+
                         ChoixCompte(client);
                         inputValid = false;
                         break;
                     case "2":
+
                         Console.Clear();
+
                         AffichageVisionGlobale affichageVisionGlobale = new AffichageVisionGlobale();
                         affichageVisionGlobale.VisionGlobale(client);
                         inputValid = false;
@@ -74,7 +78,9 @@ namespace Affichage
                     }
                     else
                     {
+
                         Console.Clear();
+
                         Console.WriteLine($"Vous avez sélectionner {numeroComptes[inputClient - 1]}");
                         Console.WriteLine("Que voulez-vous faire ? \n1. Retirer \n2. Virement \n3. Dépôt\n4. Liste des transaction \n5. Changer de compte \n6. Obtenir politique\n7. Quitter");
 

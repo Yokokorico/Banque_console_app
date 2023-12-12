@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banque", "banque\banque.csproj", "{36758DCA-E094-4C9F-A3A4-DF4321012C8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banque.Tests", "banque.Tests\banque.Tests.csproj", "{7364D852-BE02-42FF-9BA7-B8069225502C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,13 @@ Global
 		{36758DCA-E094-4C9F-A3A4-DF4321012C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36758DCA-E094-4C9F-A3A4-DF4321012C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36758DCA-E094-4C9F-A3A4-DF4321012C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{834A8C5A-A695-4EC3-883B-B2C056BD1526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834A8C5A-A695-4EC3-883B-B2C056BD1526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834A8C5A-A695-4EC3-883B-B2C056BD1526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834A8C5A-A695-4EC3-883B-B2C056BD1526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7364D852-BE02-42FF-9BA7-B8069225502C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7364D852-BE02-42FF-9BA7-B8069225502C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7364D852-BE02-42FF-9BA7-B8069225502C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7364D852-BE02-42FF-9BA7-B8069225502C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
