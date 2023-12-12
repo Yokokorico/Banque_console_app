@@ -14,11 +14,11 @@ public class Program{
         client.comptes.Add(compte);
         client.comptes.Add(compteEpargne);
         compte.notificationManager += (message) =>{
-            File.AppendAllText("compteLog.txt",message);
+            File.AppendAllText($"compteLog{compte.numeroCompte}.txt",message);
         };
         
         compteEpargne.notificationManager += (message) =>{
-            File.AppendAllText("compteEpargneLog.txt",message);
+            File.AppendAllText($"compteEpargneLog{compte.numeroCompte}.txt",message);
         };
         Console.WriteLine($"Bienvenue {client.nom} {client.prenom} !");
         Console.WriteLine("Voulez-vous accéder à votre espace personnel ?\n1. Oui \n2. Non");
