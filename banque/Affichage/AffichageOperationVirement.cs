@@ -17,7 +17,7 @@ public class AffichageOperationVirement{
                 Console.WriteLine("Vous avez selectionné Virement\nEntrer le montant de votre Virement\n*Attention le montant doit-être supérieur à 0.1€\nMontant ->");
                 if (!double.TryParse(Console.ReadLine(), out double montantEntrerParUtilisateur))
                 {
-                    Console.WriteLine("Merci de rentrer un moment valide");
+                    Console.WriteLine("Merci de rentrer un montant valide");
                     continue;
                 }
 
@@ -25,6 +25,15 @@ public class AffichageOperationVirement{
                 while (inputNumeroDeCompteValide)
                 {
                     Console.WriteLine("Entrez le numéro de compte de receveur");
+
+                    //// Recherche du compte de receveur
+                    
+                    var compteActuel = client.comptes.FirstOrDefault(c => c.numeroCompte == numeroCompte);
+
+                    var comptesDestinataires = client.comptes.Where(c => c != compteActuel)
+                                                        .Select(c => c.numeroCompte);
+
+                    Console.WriteLine(string.Join("\n", comptesDestinataires.Select(c => $"Numéro de compte : {c}")));
 
                     if (!Int32.TryParse(Console.ReadLine(), out int numeroComptePourEnvoiVirement))
                     {
